@@ -1,4 +1,4 @@
-package muralpolicia.muralpolicia;
+package muralpolicia.activities;
 
 import org.junit.Test;
 

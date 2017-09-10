@@ -1,4 +1,4 @@
-package muralpolicia.muralpolicia;
+package muralpolicia.activities;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
