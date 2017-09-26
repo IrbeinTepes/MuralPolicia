@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import muralpolicia.model.User;
 
-public class MuralActivity extends AppCompatActivity {
+public class TesteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

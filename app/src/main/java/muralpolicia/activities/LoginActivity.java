@@ -38,7 +38,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.button_Salvar:
                 User user = LoginBusiness.ValidateLogin(loginEdit.getText().toString(),passwordEdit.getText().toString());
                 if(user != null) {
-                    Intent intent = new Intent(this, MuralActivity.class);
+                    //Intent intent = new Intent(this, TesteActivity.class);
+                    Intent intent = new Intent(this, MainActivity.class);
                     intent.putExtra("user", user);
                     startActivity(intent);
                 }
