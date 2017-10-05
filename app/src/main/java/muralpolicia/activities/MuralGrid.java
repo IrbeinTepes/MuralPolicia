@@ -20,9 +20,9 @@ import muralpolicia.model.Individuo;
 public class MuralGrid extends BaseAdapter {
 
     private Context mContext;
-    private ArrayList<Individuo> listaIndividuos;
+    private List<Individuo> listaIndividuos;
 
-    public MuralGrid(Context c,ArrayList listaIndividuos) {
+    public MuralGrid(Context c,List<Individuo> listaIndividuos) {
         mContext = c;
         this.listaIndividuos = listaIndividuos;
     }
@@ -57,10 +57,10 @@ public class MuralGrid extends BaseAdapter {
         if (convertView == null) {
             //continuar
             grid = new View(mContext);
-            //grid = inflater.inflate(R.layout.grid_single, null);
-            //TextView textView = (TextView) grid.findViewById(R.id.grid_text);
-            //ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
-            //textView.setText(listaIndividuos.get(position).getNome());
+            grid = inflater.inflate(R.layout.mural_grid, null);
+            TextView textView = (TextView) grid.findViewById(R.id.grid_text);
+            ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
+            textView.setText(listaIndividuos.get(position).getNome());
             //imageView.setImageResource(listaIndividuos.get(position).getFoto().getId());
         } else {
             grid = (View) convertView;

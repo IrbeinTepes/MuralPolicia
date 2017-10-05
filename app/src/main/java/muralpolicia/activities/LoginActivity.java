@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         loginEdit = (EditText) findViewById(R.id.editText_Login);
         passwordEdit = (EditText) findViewById(R.id.editText_Password);
+        loginEdit.setText("admin");
+        passwordEdit.setText("admin");
         salvarButton = (Button) findViewById(R.id.button_Salvar);
         salvarButton.setOnClickListener(this);
     }
@@ -36,7 +38,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.button_Salvar:
                 User user = LoginBusiness.ValidateLogin(loginEdit.getText().toString(),passwordEdit.getText().toString());
                 if(user != null) {
-                    //Intent intent = new Intent(this, TesteActivity.class);
                     Intent intent = new Intent(this, MainActivity.class);
                     intent.putExtra("user", user);
                     startActivity(intent);

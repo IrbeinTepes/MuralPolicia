@@ -33,6 +33,12 @@ public class Individuo implements Parcelable {
         this.descricaoTatoo = descricaoTatoo;
     }
 
+    public Individuo(int id, String nome, Foto foto) {
+        this.id = id;
+        this.nome = nome;
+        this.foto = foto;
+    }
+
     public int getId() {
         return id;
     }
