@@ -28,7 +28,6 @@ public class Cor implements Parcelable {
     }
 
     public Cor(int id, String descricao) {
-
         this.id = id;
         this.descricao = descricao;
     }

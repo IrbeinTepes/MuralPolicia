@@ -30,7 +30,6 @@ public class Cabelo implements Parcelable {
     }
 
     public Cabelo(int id, String descricao) {
-
         this.id = id;
         this.descricao = descricao;
     }

@@ -79,7 +79,6 @@ public class Foto implements Parcelable {
         public Foto createFromParcel(Parcel in) {
             return new Foto(in);
         }
-
         public Foto[] newArray(int size) {
             return new Foto[size];
         }

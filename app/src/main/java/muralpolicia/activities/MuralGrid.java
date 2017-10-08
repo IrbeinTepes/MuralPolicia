@@ -8,7 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import muralpolicia.model.Individuo;
@@ -56,12 +57,16 @@ public class MuralGrid extends BaseAdapter {
 
         if (convertView == null) {
             //continuar
-            grid = new View(mContext);
-            grid = inflater.inflate(R.layout.mural_grid, null);
-            TextView textView = (TextView) grid.findViewById(R.id.grid_text);
+            grid = inflater.inflate(R.layout.mural_grid_item, parent,false);
+//            TextView textView = (TextView) grid.findViewById(R.id.grid_text);
             ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
-            textView.setText(listaIndividuos.get(position).getNome());
+//            textView.setText(listaIndividuos.get(position).getNome());
             //imageView.setImageResource(listaIndividuos.get(position).getFoto().getId());
+
+            Picasso.with(mContext).load(listaIndividuos.get(position).getFoto().getFoto()).fit().into(imageView);
+//            Picasso.with(mContext).load("http://www.aprenderexcel.com.br//imagens/noticia/385/2901-1.jpg").fit().into(imageView);
+
+
         } else {
             grid = (View) convertView;
         }

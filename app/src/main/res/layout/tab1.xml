@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    >
 <!--
     <TextView
         android:id="@+id/textView"
@@ -12,12 +13,13 @@
         />
     -->
     <GridView
-        android:numColumns="auto_fit"
+        android:numColumns="3"
         android:gravity="center"
-        android:columnWidth="100dp"
+        android:columnWidth="200dp"
         android:stretchMode="columnWidth"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/grid"
+        android:paddingBottom="55dp"
         />
 </RelativeLayout>
