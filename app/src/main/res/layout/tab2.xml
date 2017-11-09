@@ -3,11 +3,22 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewPesquisa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="PESQUISA"
         android:textSize="60dp"
+        />
+    <GridView
+        android:numColumns="3"
+        android:gravity="center"
+        android:columnWidth="200dp"
+        android:stretchMode="columnWidth"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/grid"
+        android:paddingBottom="55dp"
+        android:layout_below="@+id/textViewPesquisa"
         />
 </RelativeLayout>

@@ -18,59 +18,17 @@ import muralpolicia.model.Individuo;
  * Created by IrbeinTepes on 03/10/2017.
  */
 
-public class MuralGrid extends BaseAdapter {
+public class MuralGrid extends GenericGrid {
 
-    private Context mContext;
-    private List<Individuo> listaIndividuos;
-
-    public MuralGrid(Context c,List<Individuo> listaIndividuos) {
-        mContext = c;
-        this.listaIndividuos = listaIndividuos;
-    }
-
-    //até aqui
-
-    @Override
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return listaIndividuos.size();
+    public MuralGrid(Context c, List lista) {
+        super(c, lista);
     }
 
     @Override
-    public Object getItem(int position) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        View grid;
-        LayoutInflater inflater = (LayoutInflater) mContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        if (convertView == null) {
-            //continuar
-            grid = inflater.inflate(R.layout.mural_grid_item, parent,false);
-//            TextView textView = (TextView) grid.findViewById(R.id.grid_text);
-            ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
-//            textView.setText(listaIndividuos.get(position).getNome());
-            //imageView.setImageResource(listaIndividuos.get(position).getFoto().getId());
-
-            Picasso.with(mContext).load(listaIndividuos.get(position).getFoto().getFoto()).fit().into(imageView);
-//            Picasso.with(mContext).load("http://www.aprenderexcel.com.br//imagens/noticia/385/2901-1.jpg").fit().into(imageView);
-
-
-        } else {
-            grid = (View) convertView;
+        protected void makeItem(View grid, int position) {
+            ImageView imageView = grid.findViewById(R.id.grid_image);
+            Picasso.with(getContext()).load(((Individuo)getLista().get(position)).getFoto().getFoto()).fit().into(imageView);
         }
 
-        return grid;
-    }
 }
+
