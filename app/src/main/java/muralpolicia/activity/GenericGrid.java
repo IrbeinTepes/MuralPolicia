@@ -1,17 +1,12 @@
-package muralpolicia.activities;
+package muralpolicia.activity;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import muralpolicia.model.Individuo;
 
 /**
  * Created by IrbeinTepes on 11/8/2017.

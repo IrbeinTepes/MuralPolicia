@@ -1,4 +1,4 @@
-package muralpolicia.activities;
+package muralpolicia.activity;
 
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;

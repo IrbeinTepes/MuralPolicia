@@ -1,4 +1,5 @@
-package muralpolicia.activities;
+package muralpolicia.activity;
+
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,7 +23,7 @@ import muralpolicia.model.Individuo;
  * Created by IrbeinTepes on 26/09/2017.
  */
 
-public class Tab2 extends Fragment {
+public class Tab1 extends Fragment {
 
     @Nullable
     @Override
@@ -50,8 +51,7 @@ public class Tab2 extends Fragment {
         listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
         listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
 
-        PesquisaGrid adapter = new PesquisaGrid(getActivity(), listaIndividuosTeste);
-
+        MuralGrid adapter = new MuralGrid(getActivity(), listaIndividuosTeste);
         GridView grid = rootView.findViewById(R.id.grid);
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -62,8 +62,6 @@ public class Tab2 extends Fragment {
                 ((ViewPager)container).setCurrentItem(1);
             }
         });
-
         return rootView;
     }
-
 }

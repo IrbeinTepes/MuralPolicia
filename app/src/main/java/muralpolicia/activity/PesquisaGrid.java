@@ -1,4 +1,4 @@
-package muralpolicia.activities;
+package muralpolicia.activity;
 
 import android.content.Context;
 import android.view.View;
