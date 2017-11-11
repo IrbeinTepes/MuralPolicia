@@ -12,7 +12,6 @@ public class LoginBusiness {
 
         User user = null;
 
-        //pegar do banco
         if(login.equals("admin") && password.equals("admin")){
             user = new User(login, password);
         }
