@@ -31,12 +31,13 @@ public class Tab2 extends Fragment {
 
         //grid
         final List<Individuo> listaIndividuosTeste = new ArrayList<>();
-        listaIndividuosTeste.add(new Individuo(1,"nome1",new Foto(1,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(2,"nome1",new Foto(2,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(3,"nome1",new Foto(3,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(4,"nome1",new Foto(4,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(5,"nome1",new Foto(5,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(6,"nome1",new Foto(6,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
+        listaIndividuosTeste.add(new Individuo(1,"S/ DESCRIÇÃO",new Foto(1,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
+        listaIndividuosTeste.add(new Individuo(2,"NEGRO",new Foto(2,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
+        listaIndividuosTeste.add(new Individuo(3,"MULATO ESCURO",new Foto(3,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
+        listaIndividuosTeste.add(new Individuo(4,"MULATO MÉDIO",new Foto(4,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
+        listaIndividuosTeste.add(new Individuo(5,"MULATO CLARO",new Foto(5,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
+        listaIndividuosTeste.add(new Individuo(6,"BRANCO",new Foto(6,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
+        /*
         listaIndividuosTeste.add(new Individuo(7,"nome1",new Foto(7,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
         listaIndividuosTeste.add(new Individuo(8,"nome1",new Foto(8,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
         listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
@@ -49,8 +50,11 @@ public class Tab2 extends Fragment {
         listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
         listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
         listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,null,"https://www.aprenderexcel.com.br//imagens/post/385/2901-1.jpg", new Date())));
+        */
 
-        PesquisaGrid adapter = new PesquisaGrid(getActivity(), listaIndividuosTeste);
+        PesquisaGrid adapter = new PesquisaGrid(getActivity(), listaIndividuosTeste, R.layout.pesquisa_grid_item);
+
+
 
         GridView grid = rootView.findViewById(R.id.grid);
         grid.setAdapter(adapter);

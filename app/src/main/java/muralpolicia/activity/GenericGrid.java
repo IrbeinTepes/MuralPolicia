@@ -16,6 +16,15 @@ public abstract class GenericGrid extends BaseAdapter {
 
     private Context context;
     private List lista;
+    private int layout;
+
+    public int getLayout() {
+        return layout;
+    }
+
+    public void setLayout(int layout) {
+        this.layout = layout;
+    }
 
     public Context getContext() {
         return context;
@@ -33,9 +42,10 @@ public abstract class GenericGrid extends BaseAdapter {
         this.lista = lista;
     }
 
-    public GenericGrid(Context c, List lista) {
+    public GenericGrid(Context c, List lista,int layout) {
         context = c;
         this.lista = lista;
+        this.layout = layout;
     }
 
     //até aqui
@@ -66,14 +76,12 @@ public abstract class GenericGrid extends BaseAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
-            grid = inflater.inflate(R.layout.mural_grid_item, parent,false);
-
+            grid = inflater.inflate(getLayout(), parent,false);
             makeItem(grid, position);
 
         } else {
             grid = convertView;
         }
-
         return grid;
     }
 

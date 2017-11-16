@@ -16,14 +16,14 @@ import muralpolicia.model.Individuo;
 
 public class MuralGrid extends GenericGrid {
 
-    public MuralGrid(Context c, List lista) {
-        super(c, lista);
+    public MuralGrid(Context c, List lista, int layout) {
+        super(c, lista,layout);
     }
 
     @Override
         protected void makeItem(View grid, int position) {
             ImageView imageView = grid.findViewById(R.id.grid_image);
-            Picasso.with(getContext()).load(((Individuo)getLista().get(position)).getFoto().getFoto()).fit().into(imageView);
+            Picasso.with(getContext()).load(((Individuo)getLista().get(position)).getFoto().getFoto()).centerCrop().fit().into(imageView);
         }
 
 }

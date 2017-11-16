@@ -9,10 +9,6 @@ import android.widget.EditText;
 
 import muralpolicia.business.LoginBusiness;
 import muralpolicia.model.User;
-import muralpolicia.service.IService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,10 +35,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch(v.getId()){
             case R.id.button_Salvar:
                 User user;
-                //user = LoginBusiness.ValidateLogin(loginEdit.getText().toString(),passwordEdit.getText().toString());
+
+                user = LoginBusiness.ValidateLogin(loginEdit.getText().toString(),passwordEdit.getText().toString());
+                if(user != null) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("user", LoginBusiness.ValidateLogin(loginEdit.getText().toString(),passwordEdit.getText().toString()));
+                    startActivity(intent);
+                }
+                //Service
+                /*
                 user = new User(loginEdit.getText().toString(),passwordEdit.getText().toString());
                 Call<User> userCall = IService.retrofit.create(IService.class).validaLogin(user);
-
                 userCall.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
@@ -62,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 });
-
+                */
 
                 break;
         }

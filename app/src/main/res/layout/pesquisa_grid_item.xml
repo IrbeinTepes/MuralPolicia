@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="350px"
+    android:layout_height="250px"
     android:padding="1dp"
-
+    android:background="@mipmap/border"
+    android:gravity="center"
     >
 
     <!--<ImageView
@@ -17,8 +18,10 @@
         android:id="@+id/grid_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:textSize="9sp" >
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="S/ DESCRIÇÃO"
+        >
     </TextView>
 
 </LinearLayout>

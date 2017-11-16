@@ -2,9 +2,7 @@ package muralpolicia.activity;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -16,18 +14,14 @@ import muralpolicia.model.Individuo;
 
 public class PesquisaGrid extends GenericGrid {
 
-    public PesquisaGrid(Context c, List lista) {
-        super(c, lista);
+    public PesquisaGrid(Context c, List lista, int layout) {
+        super(c, lista,layout);
     }
 
     @Override
     protected void makeItem(View grid, int position) {
-        //            TextView textView = grid.findViewById(R.id.grid_text);
-        ImageView imageView = grid.findViewById(R.id.grid_image);
-//            textView.setText(listaIndividuos.get(position).getNome());
-        //imageView.setImageResource(listaIndividuos.get(position).getFoto().getId());
+        TextView textView = grid.findViewById(R.id.grid_text);
+        textView.setText(((Individuo)getLista().get(position)).getNome().toString());
 
-        Picasso.with(getContext()).load(((Individuo)getLista().get(position)).getFoto().getFoto()).fit().into(imageView);
-//            Picasso.with(mContext).load("http://www.aprenderexcel.com.br//imagens/noticia/385/2901-1.jpg").fit().into(imageView);
     }
 }
