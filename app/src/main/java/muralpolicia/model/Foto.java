@@ -10,17 +10,9 @@ import java.util.Date;
 
 public class Foto implements Parcelable {
 
-    int id;
-    Individuo individuo;
-    String foto;
-    Date fotoData;
-
-    public Foto(int id, Individuo individuo, String foto, Date fotoData) {
-        this.id = id;
-        this.individuo = individuo;
-        this.foto = foto;
-        this.fotoData = fotoData;
-    }
+    private int id;
+    private String foto;
+    private Date fotoData;
 
     public int getId() {
         return id;
@@ -28,14 +20,6 @@ public class Foto implements Parcelable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Individuo getIndividuo() {
-        return individuo;
-    }
-
-    public void setIndividuo(Individuo individuo) {
-        this.individuo = individuo;
     }
 
     public String getFoto() {
@@ -63,14 +47,18 @@ public class Foto implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeParcelable(this.individuo, 0);
         dest.writeString(this.foto);
         dest.writeSerializable(this.fotoData); //convert back to date to read
     }
 
+    public Foto(int id, String foto, Date fotoData) {
+        this.id = id;
+        this.foto = foto;
+        this.fotoData = fotoData;
+    }
+
     public Foto(Parcel in) {
         this.id = in.readInt();
-        this.individuo = in.readParcelable(Individuo.class.getClassLoader());
         this.foto = in.readString();
         this.fotoData = (Date) in.readSerializable();
     }

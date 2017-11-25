@@ -3,15 +3,13 @@ package muralpolicia.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 /**
  * Created by IrbeinTepes on 03/10/2017.
  */
 
 public class Cabelo implements Parcelable {
-    int id;
-    String descricao;
+    private int id;
+    private  String descricao;
 
     public int getId() {
         return id;

@@ -8,8 +8,8 @@ import android.os.Parcelable;
  */
 
 public class Cor implements Parcelable {
-    int id;
-    String descricao;
+    private int id;
+    private String descricao;
 
     public int getId() {
         return id;

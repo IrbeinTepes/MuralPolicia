@@ -9,18 +9,20 @@ import android.os.Parcelable;
 
 public class Individuo implements Parcelable {
 
-    int id;
-    String nome;
-    String alcunha;
-    String nomeMae;
-    Foto foto;
-    Cabelo cabelo;
-    Cor cor;
-    Olho olho;
-    String tipoTatoo;
-    String descricaoTatoo;
+    private int id;
+    private String nome;
+    private String alcunha;
+    private String nomeMae;
+    private Foto foto;
+    private Cabelo cabelo;
+    private Cor cor;
+    private Olho olho;
+    private String tipoTatoo;
+    private String descricaoTatoo;
+    private String tipoScar;
+    private String descricaoScar;
 
-    public Individuo(int id, String nome, String alcunha, String nomeMae, Foto foto, Cabelo cabelo, Cor cor, Olho olho, String tipoTatoo, String descricaoTatoo) {
+    public Individuo(int id, String nome, String alcunha, String nomeMae, Foto foto, Cabelo cabelo, Cor cor, Olho olho, String tipoTatoo, String descricaoTatoo, String tipoScar, String descricaoScar) {
         this.id = id;
         this.nome = nome;
         this.alcunha = alcunha;
@@ -31,6 +33,8 @@ public class Individuo implements Parcelable {
         this.olho = olho;
         this.tipoTatoo = tipoTatoo;
         this.descricaoTatoo = descricaoTatoo;
+        this.tipoScar = tipoScar;
+        this.descricaoScar = descricaoScar;
     }
 
     public Individuo(int id, String nome, Foto foto) {
@@ -118,6 +122,23 @@ public class Individuo implements Parcelable {
     public void setDescricaoTatoo(String descricaoTatoo) {
         this.descricaoTatoo = descricaoTatoo;
     }
+
+    public String getTipoScar() {
+        return tipoScar;
+    }
+
+    public void setTipoScar(String tipoScar) {
+        this.tipoScar = tipoScar;
+    }
+
+    public String getDescricaoScar() {
+        return descricaoScar;
+    }
+
+    public void setDescricaoScar(String descricaoScar) {
+        this.descricaoScar = descricaoScar;
+    }
+
     //Parcelable Things
 
     @Override
@@ -137,6 +158,8 @@ public class Individuo implements Parcelable {
         dest.writeParcelable(this.olho, 0);
         dest.writeString(this.tipoTatoo);
         dest.writeString(this.descricaoTatoo);
+        dest.writeString(this.tipoScar);
+        dest.writeString(this.descricaoScar);
     }
 
     public Individuo(Parcel in) {
@@ -150,6 +173,8 @@ public class Individuo implements Parcelable {
         this.olho = in.readParcelable(Olho.class.getClassLoader());
         this.tipoTatoo = in.readString();
         this.descricaoTatoo = in.readString();
+        this.tipoScar = in.readString();
+        this.descricaoScar = in.readString();
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
