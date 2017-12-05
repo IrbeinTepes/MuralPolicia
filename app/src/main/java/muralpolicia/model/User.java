@@ -8,29 +8,37 @@ import android.os.Parcelable;
  */
 
 public class User implements Parcelable {
+    private int id;
+    private String usrLogin;
+    private String usrSenha;
 
-    private String login;
-    private String password;
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public int getId() {
+        return id;
     }
 
-    public String getLogin() {
-        return login;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public User(String usrLogin, String usrSenha) {
+        this.usrLogin = usrLogin;
+        this.usrSenha = usrSenha;
     }
 
-    public String getPassword() {
-        return password;
+    public String getusrLogin() {
+        return usrLogin;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setusrLogin(String usrLogin) {
+        this.usrLogin = usrLogin;
+    }
+
+    public String getusrSenha() {
+        return usrSenha;
+    }
+
+    public void setusrSenha(String usrSenha) {
+        this.usrSenha = usrSenha;
     }
 
     //Parcelable Things
@@ -42,13 +50,15 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.login);
-        dest.writeString(this.password);
+        dest.writeInt(this.id);
+        dest.writeString(this.usrLogin);
+        dest.writeString(this.usrSenha);
     }
 
     public User(Parcel in){
-        this.login = in.readString();
-        this.password =  in.readString();
+        this.id = in.readInt();
+        this.usrLogin = in.readString();
+        this.usrSenha =  in.readString();
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

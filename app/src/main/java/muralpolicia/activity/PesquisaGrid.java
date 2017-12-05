@@ -21,7 +21,7 @@ public class PesquisaGrid extends GenericGrid {
     @Override
     protected void makeItem(View grid, int position) {
         TextView textView = grid.findViewById(R.id.grid_text);
-        textView.setText(((Individuo)getLista().get(position)).getNome().toString());
+        textView.setText(((Individuo)getLista().get(position)).getIndNm().toString());
 
     }
 }

@@ -3,6 +3,7 @@ package muralpolicia.service;
 import java.util.List;
 
 import muralpolicia.model.Individuo;
+import muralpolicia.model.IndividuoMural;
 import muralpolicia.model.User;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -18,17 +19,17 @@ import retrofit2.http.Path;
 
 public interface IService {
 
-    @GET("mural/")
-    Call<List<Individuo>> listaMural();
+    @GET("individuosmuralservice/")
+    Call<List<IndividuoMural>> listaMural();
 
-    @POST("usuarioservice/")
+    @POST("usuarioservice/login")
     Call<User> validaLogin(@Body User user);
 
     @GET("individuo/{id}")
     Call<List<Individuo>> getInfoIndividio(@Path("id") String id);
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("127.0.0.1:8081/MuralService/")
+            .baseUrl("http://10.0.2.2:8081/MuralService/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

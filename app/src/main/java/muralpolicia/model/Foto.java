@@ -11,8 +11,11 @@ import java.util.Date;
 public class Foto implements Parcelable {
 
     private int id;
-    private String foto;
-    private Date fotoData;
+    private String fotoArq;
+    private Date fotoDt;
+    private String fotoResp;
+
+
 
     public int getId() {
         return id;
@@ -22,20 +25,20 @@ public class Foto implements Parcelable {
         this.id = id;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getFotoArq() {
+        return fotoArq;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setFotoArq(String fotoArq) {
+        this.fotoArq = fotoArq;
     }
 
     public Date getFotoData() {
-        return fotoData;
+        return fotoDt;
     }
 
     public void setFotoData(Date fotoData) {
-        this.fotoData = fotoData;
+        this.fotoDt = fotoData;
     }
     //Parcelable Things
 
@@ -47,20 +50,22 @@ public class Foto implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeString(this.foto);
-        dest.writeSerializable(this.fotoData); //convert back to date to read
+        dest.writeString(this.fotoArq);
+        dest.writeSerializable(this.fotoDt); //convert back to date to read
     }
 
-    public Foto(int id, String foto, Date fotoData) {
+    public Foto(int id, String foto, Date fotoData, String fotoResp) {
         this.id = id;
-        this.foto = foto;
-        this.fotoData = fotoData;
+        this.fotoArq = foto;
+        this.fotoDt = fotoData;
+        this.fotoResp = fotoResp;
     }
 
     public Foto(Parcel in) {
         this.id = in.readInt();
-        this.foto = in.readString();
-        this.fotoData = (Date) in.readSerializable();
+        this.fotoArq = in.readString();
+        this.fotoDt = (Date) in.readSerializable();
+        this.fotoResp = in.readString();
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

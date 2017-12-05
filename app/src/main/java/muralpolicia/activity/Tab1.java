@@ -13,11 +13,14 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import muralpolicia.model.Foto;
 import muralpolicia.model.Individuo;
+import muralpolicia.model.IndividuoMural;
+import muralpolicia.service.IService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by IrbeinTepes on 26/09/2017.
@@ -31,6 +34,8 @@ public class Tab1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.tab1, container, false);
+
+        adapter = new MuralGrid(getActivity(), new ArrayList<IndividuoMural>(), R.layout.mural_grid_item);
 
         loadGrid();
         GridView grid = rootView.findViewById(R.id.grid);
@@ -47,30 +52,28 @@ public class Tab1 extends Fragment {
     }
 
     public void loadGrid(){
+        Call<List<IndividuoMural>> indMural = IService.retrofit.create(IService.class).listaMural();
+        indMural.enqueue(new Callback<List<IndividuoMural>>() {
 
+            @Override
+            public void onResponse(Call<List<IndividuoMural>> listIndMural, Response<List<IndividuoMural>> response) {
+                if(response.body() != null) {
+                    if(adapter == null){
+                         adapter = new MuralGrid(getActivity(), new ArrayList<IndividuoMural>(), R.layout.mural_grid_item);
+                    }
+                    adapter.setLista(response.body());
+                    adapter.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(getContext() , "SEM INDÍVIDUOS PARA MOSTRAR", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<IndividuoMural>> call, Throwable t) {
+                Toast.makeText(getContext() , "ERRO AO ESTABELECER CONEXÃO", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+            }
+        });
         //recallService
-
-        //grid
-        final List<Individuo> listaIndividuosTeste = new ArrayList<>();
-        listaIndividuosTeste.add(new Individuo(1,"nome1",new Foto(1,"https://randomuser.me/api/portraits/men/30.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(2,"nome1",new Foto(2,"https://randomuser.me/api/portraits/men/81.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(3,"nome1",new Foto(3,"https://randomuser.me/api/portraits/men/66.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(4,"nome1",new Foto(4,"https://randomuser.me/api/portraits/men/50.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(5,"nome1",new Foto(5,"https://randomuser.me/api/portraits/men/0.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(6,"nome1",new Foto(6,"https://randomuser.me/api/portraits/men/70.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(7,"nome1",new Foto(7,"https://randomuser.me/api/portraits/men/38.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(8,"nome1",new Foto(8,"https://randomuser.me/api/portraits/men/2.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,"https://randomuser.me/api/portraits/men/58.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,"https://randomuser.me/api/portraits/women/92.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,"https://randomuser.me/api/portraits/women/93.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,"https://randomuser.me/api/portraits/women/52.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,"https://randomuser.me/api/portraits/women/43.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,"https://randomuser.me/api/portraits/women/40.jpg", new Date())));
-        listaIndividuosTeste.add(new Individuo(9,"nome1",new Foto(9,"https://randomuser.me/api/portraits/women/41.jpg", new Date())));
-
-        adapter = new MuralGrid(getActivity(), listaIndividuosTeste, R.layout.mural_grid_item);
-
-
-
     }
 }

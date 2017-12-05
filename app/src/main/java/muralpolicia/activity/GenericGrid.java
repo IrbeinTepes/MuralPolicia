@@ -77,11 +77,10 @@ public abstract class GenericGrid extends BaseAdapter {
 
         if (convertView == null) {
             grid = inflater.inflate(getLayout(), parent,false);
-            makeItem(grid, position);
-
         } else {
             grid = convertView;
         }
+        makeItem(grid, position);
         return grid;
     }
 
