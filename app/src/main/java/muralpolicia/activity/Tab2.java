@@ -3,7 +3,6 @@ package muralpolicia.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +13,25 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import muralpolicia.model.Cabelo;
+import muralpolicia.model.Cor;
 import muralpolicia.model.Individuo;
+import muralpolicia.model.IndividuoMural;
+import muralpolicia.model.Olho;
+import muralpolicia.service.IService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by IrbeinTepes on 26/09/2017.
  */
 
 public class Tab2 extends Fragment {
+
+    int[] listaCaracteristicas = new int[3];
+    private PesquisaGrid adapter;
+    private int[] characteristics;
 
     @Nullable
     @Override
@@ -69,12 +80,90 @@ public class Tab2 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(getActivity(), "You Clicked at " +listaIndividuosTeste.get(position).getId(), Toast.LENGTH_SHORT).show();
-                ((ViewPager)container).setCurrentItem(1);
+                listaCaracteristicas[0] = listaIndividuosTeste.get(position).getId();
+                //((ViewPager)container).setCurrentItem(1);
             }
         });
 
         return rootView;
+    }
+
+    public void loadGridCorPele(){
+        Call<List<Cor>> call = IService.retrofit.create(IService.class).getCor();
+        call.enqueue(new Callback<List<Cor>>() {
+
+            @Override
+            public void onResponse(Call<List<Cor>> call, Response<List<Cor>> response) {
+                if(response.body() != null) {
+                    if(adapter == null){
+                        adapter = new PesquisaGrid(getActivity(), new ArrayList<Cor>(), R.layout.pesquisa_grid_item);
+                    }
+                    adapter.setLista(response.body());
+                    adapter.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(getContext() , "SEM INDÍVIDUOS PARA MOSTRAR", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Cor>> call, Throwable t) {
+                Toast.makeText(getContext() , "ERRO AO ESTABELECER CONEXÃO", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+            }
+        });
+        //recallService
+    }
+
+    public void loadGridCorCabelo(){
+        Call<List<Cabelo>> call = IService.retrofit.create(IService.class).getCabelo();
+        call.enqueue(new Callback<List<Cabelo>>() {
+
+            @Override
+            public void onResponse(Call<List<Cabelo>> listIndMural, Response<List<Cabelo>> response) {
+                if(response.body() != null) {
+                    if(adapter == null){
+                        adapter = new PesquisaGrid(getActivity(), new ArrayList<IndividuoMural>(), R.layout.mural_grid_item);
+                    }
+                    adapter.setLista(response.body());
+                    adapter.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(getContext() , "SEM INDÍVIDUOS PARA MOSTRAR", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Cabelo>> call, Throwable t) {
+                Toast.makeText(getContext() , "ERRO AO ESTABELECER CONEXÃO", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+            }
+        });
+        //recallService
+    }
+
+    public void loadGridCorOlho(){
+        Call<List<Olho>> call = IService.retrofit.create(IService.class).getOlho();
+        call.enqueue(new Callback<List<Olho>>() {
+
+            @Override
+            public void onResponse(Call<List<Olho>> listIndMural, Response<List<Olho>> response) {
+                if(response.body() != null) {
+                    if(adapter == null){
+                        adapter = new PesquisaGrid(getActivity(), new ArrayList<Olho>(), R.layout.mural_grid_item);
+                    }
+                    adapter.setLista(response.body());
+                    adapter.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(getContext() , "SEM INDÍVIDUOS PARA MOSTRAR", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Olho>> call, Throwable t) {
+                Toast.makeText(getContext() , "ERRO AO ESTABELECER CONEXÃO", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+            }
+        });
+        //recallService
     }
 
 }

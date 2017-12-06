@@ -2,8 +2,11 @@ package muralpolicia.service;
 
 import java.util.List;
 
+import muralpolicia.model.Cabelo;
+import muralpolicia.model.Cor;
 import muralpolicia.model.Individuo;
 import muralpolicia.model.IndividuoMural;
+import muralpolicia.model.Olho;
 import muralpolicia.model.User;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -24,6 +27,18 @@ public interface IService {
 
     @POST("usuarioservice/login")
     Call<User> validaLogin(@Body User user);
+
+    @GET("individuoscorservice/")
+    Call<List<Cor>> getCor();
+
+    @GET("individuosolhosservice/")
+    Call<List<Olho>> getOlho();
+
+    @GET("individuoscabeloservice/")
+    Call<List<Cabelo>> getCabelo();
+
+    @POST("pesquisa/characteristics")
+    Call<List<Individuo>> pesquisa(@Body int[] characteristics);
 
     @GET("individuo/{id}")
     Call<List<Individuo>> getInfoIndividio(@Path("id") String id);
