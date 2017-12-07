@@ -3,5 +3,4 @@
     <string name="title_activity_main">MuralApp</string>
     <string name="action_settings">Identificar por Imagem</string>
     <string name="refresh">refresh</string>
-    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

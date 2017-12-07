@@ -4,6 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by IrbeinTepes on 11/15/2017.
  */
@@ -13,16 +16,17 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
+    List<Fragment> tabs = new ArrayList<>();
+    List<String> tabsName = new ArrayList<>();
+
+    public void addFragment(Fragment fragment, String title) {
+        tabs.add(fragment);
+        tabsName.add(title);
+    }
 
     @Override
     public Fragment getItem(int position) {
-        switch (position){
-            case 0:
-                return new Tab1();
-            case 1:
-                return new Tab2();
-        }
-        return null;
+        return tabs.get(position);
     }
 
     @Override
@@ -32,12 +36,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position) {
-            case 0:
-                return "MURAL";
-            case 1:
-                return "PESQUISA";
-        }
-        return null;
+        return tabsName.get(position);
     }
 }

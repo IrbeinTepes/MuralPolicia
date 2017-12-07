@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import muralpolicia.business.SingletonGlobal;
 import muralpolicia.model.User;
 import muralpolicia.service.IService;
 import retrofit2.Call;
@@ -27,8 +28,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         loginEdit = (EditText) findViewById(R.id.editText_Login);
         passwordEdit = (EditText) findViewById(R.id.editText_Password);
+        /*
         loginEdit.setText("admin");
         passwordEdit.setText("admin");
+        */
         salvarButton = (Button) findViewById(R.id.button_Salvar);
         salvarButton.setOnClickListener(this);
     }
@@ -55,8 +58,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 userCall.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.body() != null) {
+                        if(response.body().getId() != 0) {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            SingletonGlobal.getInstance().setUser(response.body());
                             intent.putExtra("user", response.body());
                             startActivity(intent);
                         }else{

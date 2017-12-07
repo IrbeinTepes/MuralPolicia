@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewPesquisa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="NOME"
+        android:textSize="60dp"
+        />
+
+    <ImageView
+        android:id="@+id/imageViewCriminoso"
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:layout_marginLeft="50px"
+        android:layout_marginTop="50px"
+        android:layout_below="@+id/textViewPesquisa"
+        app:srcCompat="@android:color/background_light" />
+
+    <TextView
+        android:id="@+id/textSexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageViewCriminoso"
+        android:layout_marginStart="31dp"
+        android:layout_toEndOf="@+id/imageViewCriminoso"
+        android:text="Sexo:"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textSexoInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textSexo"
+        android:layout_alignBottom="@+id/textSexo"
+        android:layout_toEndOf="@+id/textSexo"
+        android:text=""
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/addMural"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageViewCriminoso"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="19dp"
+        android:text="Adicionar ao Mural" />
+
+</RelativeLayout>

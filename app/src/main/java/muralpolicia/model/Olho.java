@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 public class Olho implements Parcelable {
     private int id;
-    private String descricao;
+    private String indolhosDs;
 
     public int getId() {
         return id;
@@ -19,18 +19,23 @@ public class Olho implements Parcelable {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getIndolhosDs() {
+        return indolhosDs;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setIndolhosDs(String indolhosDs) {
+        this.indolhosDs = indolhosDs;
     }
 
-    public Olho(int id, String descricao) {
+    public Olho(int id, String indolhosDs) {
 
         this.id = id;
-        this.descricao = descricao;
+        this.indolhosDs = indolhosDs;
+    }
+
+    @Override
+    public String toString() {
+        return indolhosDs;
     }
 
     //Parcelable Things
@@ -43,12 +48,12 @@ public class Olho implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeString(this.descricao);
+        dest.writeString(this.indolhosDs);
     }
 
     public Olho(Parcel in) {
         this.id = in.readInt();
-        this.descricao = in.readString();
+        this.indolhosDs = in.readString();
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

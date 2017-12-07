@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 public class Cor implements Parcelable {
     private int id;
-    private String descricao;
+    private String indcorDs;
 
     public int getId() {
         return id;
@@ -19,17 +19,22 @@ public class Cor implements Parcelable {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getIndcorDs() {
+        return indcorDs;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setIndcorDs(String indcorDs) {
+        this.indcorDs = indcorDs;
     }
 
-    public Cor(int id, String descricao) {
+    public Cor(int id, String indcorDs) {
         this.id = id;
-        this.descricao = descricao;
+        this.indcorDs = indcorDs;
+    }
+
+    @Override
+    public String toString() {
+        return indcorDs;
     }
 
     //Parcelable Things
@@ -42,12 +47,12 @@ public class Cor implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeString(this.descricao);
+        dest.writeString(this.indcorDs);
     }
 
     public Cor(Parcel in) {
         this.id = in.readInt();
-        this.descricao = in.readString();
+        this.indcorDs = in.readString();
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

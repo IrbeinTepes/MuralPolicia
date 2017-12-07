@@ -37,6 +37,11 @@ public class Tatuagem implements Parcelable {
         this.descricaoTatuagem = descricaoTatuagem;
     }
 
+    @Override
+    public String toString() {
+        return descricaoTatuagem;
+    }
+
 
     //Parcelable Things
 

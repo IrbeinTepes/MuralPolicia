@@ -37,6 +37,11 @@ public class Cicatriz implements Parcelable {
         this.descricaoCicatriz = descricaoCicatriz;
     }
 
+    @Override
+    public String toString() {
+        return descricaoCicatriz;
+    }
+
 
     //Parcelable Things
 

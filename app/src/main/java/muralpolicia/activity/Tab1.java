@@ -29,25 +29,20 @@ import retrofit2.Response;
 public class Tab1 extends Fragment {
 
     private MuralGrid adapter;
+    private GridView grid;
+    private ViewGroup container;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.tab1, container, false);
-
+        this.container = container;
         adapter = new MuralGrid(getActivity(), new ArrayList<IndividuoMural>(), R.layout.mural_grid_item);
 
         loadGrid();
-        GridView grid = rootView.findViewById(R.id.grid);
+        grid = rootView.findViewById(R.id.grid);
         grid.setAdapter(adapter);
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Toast.makeText(getActivity(), "You Clicked at " + ((Individuo)adapter.getLista().get(position)).getId(), Toast.LENGTH_SHORT).show();
-                ((ViewPager)container).setCurrentItem(1);
-            }
-        });
+        ((ViewPager)container).setCurrentItem(1);
         return rootView;
     }
 
@@ -58,11 +53,17 @@ public class Tab1 extends Fragment {
             @Override
             public void onResponse(Call<List<IndividuoMural>> listIndMural, Response<List<IndividuoMural>> response) {
                 if(response.body() != null) {
-                    if(adapter == null){
-                         adapter = new MuralGrid(getActivity(), new ArrayList<IndividuoMural>(), R.layout.mural_grid_item);
-                    }
+
                     adapter.setLista(response.body());
                     adapter.notifyDataSetChanged();
+                    grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view,
+                                                int position, long id) {
+                            //((SectionsPagerAdapter)((ViewPager)container).getAdapter()).tabs.set(0,new Tab3());
+                            Toast.makeText(getActivity(), "Implementação futura" + ((IndividuoMural)adapter.getLista().get(position)).getId(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }else{
                     Toast.makeText(getContext() , "SEM INDÍVIDUOS PARA MOSTRAR", Toast.LENGTH_SHORT).show();
                 }
@@ -74,6 +75,38 @@ public class Tab1 extends Fragment {
                 t.printStackTrace();
             }
         });
-        //recallService
     }
+
+    public void searchIndividuo(int[] characteristics){
+        Call<List<Individuo>> indMural = IService.retrofit.create(IService.class).pesquisa(characteristics);
+        indMural.enqueue(new Callback<List<Individuo>>() {
+
+            @Override
+            public void onResponse(Call<List<Individuo>> listIndMural, Response<List<Individuo>> response) {
+                if(response.body().size() > 0) {
+
+                    adapter.setLista(response.body());
+                    adapter.notifyDataSetChanged();
+                    grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view,
+                                                int position, long id) {
+                            Toast.makeText(getActivity(), "You Clicked at " + ((IndividuoMural)adapter.getLista().get(position)).getId(), Toast.LENGTH_SHORT).show();
+                            ((ViewPager)container).setCurrentItem(1);
+                        }
+                    });
+                    Toast.makeText(getContext() , "BUSCA EFETUADA", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext() , "SEM INDÍVIDUOS PARA MOSTRAR", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Individuo>> call, Throwable t) {
+                Toast.makeText(getContext() , "ERRO AO ESTABELECER CONEXÃO", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+            }
+        });
+    }
+
 }

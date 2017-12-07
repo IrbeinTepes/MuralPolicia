@@ -18,6 +18,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
 
+    public SectionsPagerAdapter getmSectionsPagerAdapter() {
+        return mSectionsPagerAdapter;
+    }
+
+    public void setmSectionsPagerAdapter(SectionsPagerAdapter mSectionsPagerAdapter) {
+        this.mSectionsPagerAdapter = mSectionsPagerAdapter;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter.addFragment(new Tab1(),"Mural");
+        mSectionsPagerAdapter.addFragment(new Tab2(),"Pesquisa");
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -39,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Mudar esse Botão", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Implementação Futura", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -65,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.refresh:
                     ((Tab1)mSectionsPagerAdapter.getItem(0)).loadGrid();
                     mViewPager.setCurrentItem(0);
-                Toast.makeText(mViewPager.getContext() , "Refreshing...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mViewPager.getContext() , "ATUALIZANDO...", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
